@@ -6,11 +6,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useAppContext } from '../../context/AppContext';
 import { publicaciones, deletePost as deletePostApi, addComentario } from '../../api/api';
 import { editPostAndReturnResult } from '../../helper/addLikeByPost';
 import Tooltip from '@mui/material/Tooltip';
+import {  TextField } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import CommentIcon from '@mui/icons-material/Comment';
 
@@ -22,16 +27,7 @@ const HomePage: React.FC = () => {
   const [commentOpen, setCommentOpen] = useState(false);
   const [comment, setComment] = useState('');
   const [postToDelete, setPostToDelete] = useState<number | null>(null);
-  const styles = {
-    separator: {
-      borderTop: '1px solid #ccc',
-      margin: '1rem 0',
-    },
-    separatorh3: {
-      marginLeft: '1rem',
-    },
-  };
-  
+
   const fetchPosts = async () => {
     try {
       const blogsResponse = await publicaciones();
@@ -66,7 +62,7 @@ const HomePage: React.FC = () => {
   };
 
   const handleLike = async (postId: number) => {
-    const like = await editPostAndReturnResult(postId, user?.token);
+    const like = await editPostAndReturnResult(postId,user?.token)
     fetchPosts();
   };
   const openCommentDialog = (postId: number, comment: string) => {
@@ -75,13 +71,13 @@ const HomePage: React.FC = () => {
     if (user?.token && comment !== '') {
       addCommentPost(postId, comment, user.token);
     } else {
-      console.error('User token is undefined.');
+      console.error("User token is undefined.");
     }
   };
-  const addCommentPost = async (postId: number, comment: string, token: string) => {
+  const addCommentPost = async (postId: number,comment: string,token: string) => {
     try {
-      const blogsResponse = await addComentario(postId, comment, token);
-      setComment('');
+      const blogsResponse = await addComentario(postId,comment,token);
+      setComment('')
       fetchPosts();
     } catch (error) {
       console.error('Error al obtener las publicaciones:', error);
@@ -96,6 +92,8 @@ const HomePage: React.FC = () => {
           border: '1px solid #999',
           padding: '8px 0',
           marginBottom: '16px',
+          width:'100%'
+
         }}
       >
         <Grid container spacing={2} justifyContent="space-between" alignItems="center">
@@ -105,7 +103,7 @@ const HomePage: React.FC = () => {
                 onClick={() => navigate('/new-post')}
                 variant="contained"
                 color="primary"
-                style={{ marginLeft: '1rem', marginRight: '1rem' }}
+                style={{ marginLeft: '1rem', marginRight: '1rem' }} // Agrega margen izquierdo y derecho
               >
                 Crear Nuevo Post
               </Button>
@@ -125,7 +123,7 @@ const HomePage: React.FC = () => {
                 onClick={() => navigate('/login')}
                 variant="outlined"
                 color="primary"
-                style={{ marginRight: '1rem' }}
+                style={{ marginRight: '1rem' }} // Agrega margen derecho
               >
                 Iniciar Sesión
               </Button>
@@ -133,9 +131,9 @@ const HomePage: React.FC = () => {
           </Grid>
         </Grid>
       </header>
-      <section>
-        <h3 style={styles.separatorh3}> Publicaciones Recientes </h3>
-        <hr style={styles.separator} />
+       <section style={{ flex: 1, marginBottom: '10rem' }}>
+        <h3 style={{ marginLeft:'1rem' }}  >Publicaciones Recientes</h3>
+        <hr style={{ borderTop: '1px solid #ccc', margin: '0.5rem 0' }} />
         <Grid container spacing={2}>
           {posts.map((post) => (
             <Grid item xs={12} key={post.id}>
@@ -145,6 +143,8 @@ const HomePage: React.FC = () => {
                   '&:hover': {
                     transform: 'translateY(-5px)',
                   },
+                  boxShadow: '10px 12px 114px rgba(10, 10, 10, 0.1)',
+
                 }}
               >
                 <CardContent>
@@ -169,6 +169,7 @@ const HomePage: React.FC = () => {
                         <Button onClick={() => deletePost(post.id)} variant="outlined" color="secondary">
                           Eliminar
                         </Button>
+                       
                       </>
                     )}
                     {isAuthenticated && (
@@ -185,6 +186,7 @@ const HomePage: React.FC = () => {
                         </Tooltip>
                       </>
                     )}
+                    
                   </div>
                 </CardContent>
               </Card>
@@ -198,29 +200,77 @@ const HomePage: React.FC = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        {/* ... (código del diálogo) */}
+        <DialogTitle id="alert-dialog-title">Confirmación</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            ¿Estás seguro de que deseas eliminar este post?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleConfirmDelete} color="primary" autoFocus>
+            Eliminar
+          </Button>
+        </DialogActions>
       </Dialog>
-      <Dialog
-        open={commentOpen}
-        onClose={() => setCommentOpen(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        {/* ... (código del diálogo de comentarios) */}
-      </Dialog>
-      <footer
+      
+    <Dialog
+      open={commentOpen}
+      onClose={() => setCommentOpen(false)}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">Nuevo comentario para el post </DialogTitle>
+      <DialogContent>
+        <TextField
+          multiline
+          rows={4}
+          variant="outlined"
+          fullWidth
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          label="Comentario"
+        />
+        <DialogContentText id="alert-dialog-description">
+          Agrega un nuevo comentario a este posteo para que el autor pueda verlo
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => setCommentOpen(false)} color="primary">
+          Cancelar
+        </Button>
+        <Button
+            onClick={() => {
+              if (postToDelete !== null) {
+                openCommentDialog(postToDelete, comment);
+              }
+            }}
+            color="primary"
+            autoFocus
+          >
+            Agregar
+          </Button>
+      </DialogActions>
+    </Dialog>
+   <footer
         style={{
           borderTop: '1px solid #ccc',
           paddingTop: '1rem',
+          paddingBottom: '1rem',
           textAlign: 'center',
+          backgroundColor: '#f0f0f0',
+          height: '10px',
+          position: 'fixed',
           bottom: 0,
           left: 0,
           width: '100%',
-          backgroundColor: '#f0f0f0',
         }}
       >
-        <p>© 2023 Tu Compañía. Todos los derechos reservados.</p>
+        © 2023 SynAgro. Todos los derechos reservados.
       </footer>
+
     </div>
   );
 };
