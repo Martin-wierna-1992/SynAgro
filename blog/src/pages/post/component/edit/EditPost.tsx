@@ -73,7 +73,7 @@ const EditPost: React.FC = () => {
             onChange={(e) => setTitulo(e.target.value)}
             required
             style={{ marginBottom: '16px' }} 
-            inputProps={{maxLength :20}}
+            inputProps={{maxLength :50}}
             
           />
 
@@ -86,7 +86,7 @@ const EditPost: React.FC = () => {
             onChange={(e) => setResumen(e.target.value)}
             required
             style={{ marginBottom: '16px' }}
-            inputProps={{maxLength :100}}
+            inputProps={{maxLength :120}}
 
           />
 

@@ -16,11 +16,13 @@ import { publicaciones, deletePost as deletePostApi, addComentario } from '../..
 import { editPostAndReturnResult } from '../../helper/addLikeByPost';
 import Tooltip from '@mui/material/Tooltip';
 import {  TextField } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
 import CommentIcon from '@mui/icons-material/Comment';
+import Header from '../header/Header';
+import CustomDialog from '../dialog/CustomDialog';
+import Footer from '../footer/Footer';
 
 const HomePage: React.FC = () => {
-  const { isAuthenticated, user, logout, updatePosts, posts } = useAppContext();
+  const { isAuthenticated, user, updatePosts, posts } = useAppContext();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -42,9 +44,7 @@ const HomePage: React.FC = () => {
     fetchPosts();
   }, []);
 
-  const handleLogout = () => {
-    logout();
-  };
+  
 
   const deletePost = (id: number) => {
     setOpen(true);
@@ -86,54 +86,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <header
-        style={{
-          background: 'linear-gradient(to right, #f0f0f0, #cccccc)',
-          border: '1px solid #999',
-          padding: '8px 0',
-          marginBottom: '16px',
-          width:'100%'
-
-        }}
-      >
-        <Grid container spacing={2} justifyContent="space-between" alignItems="center">
-          <Grid item>
-            {isAuthenticated && (
-              <Button
-                onClick={() => navigate('/new-post')}
-                variant="contained"
-                color="primary"
-                style={{ marginLeft: '1rem', marginRight: '1rem' }} // Agrega margen izquierdo y derecho
-              >
-                Crear Nuevo Post
-              </Button>
-            )}
-          </Grid>
-          <Grid item>
-            {isAuthenticated ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '1rem' }}>
-                <span>Hola, {user?.name}</span>
-                <PersonIcon />
-                <Button onClick={handleLogout} variant="outlined" color="secondary">
-                  Cerrar Sesión
-                </Button>
-              </div>
-            ) : (
-              <Button
-                onClick={() => navigate('/login')}
-                variant="outlined"
-                color="primary"
-                style={{ marginRight: '1rem' }} // Agrega margen derecho
-              >
-                Iniciar Sesión
-              </Button>
-            )}
-          </Grid>
-        </Grid>
-      </header>
+      <Header/>
        <section style={{ flex: 1, marginBottom: '10rem' }}>
         <h3 style={{ marginLeft:'1rem' }}  >Publicaciones Recientes</h3>
         <hr style={{ borderTop: '1px solid #ccc', margin: '0.5rem 0' }} />
+        
         <Grid container spacing={2}>
           {posts.map((post) => (
             <Grid item xs={12} key={post.id}>
@@ -149,10 +106,10 @@ const HomePage: React.FC = () => {
               >
                 <CardContent>
                   <Typography variant="h5" component="h2">
-                    Titulo: {post.titulo}
+                    {post.titulo}
                   </Typography>
                   <Typography variant="h6" component="h3">
-                    Autor: {post.autor}
+                   {post.autor}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
                     Resumen: {post.resumen}
@@ -194,27 +151,7 @@ const HomePage: React.FC = () => {
           ))}
         </Grid>
       </section>
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">Confirmación</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            ¿Estás seguro de que deseas eliminar este post?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpen(false)} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={handleConfirmDelete} color="primary" autoFocus>
-            Eliminar
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <CustomDialog open={ open } setOpen={() => setOpen(!open)} handleConfirmDelete={()=>handleConfirmDelete()}/>
       
     <Dialog
       open={commentOpen}
@@ -254,23 +191,7 @@ const HomePage: React.FC = () => {
           </Button>
       </DialogActions>
     </Dialog>
-   <footer
-        style={{
-          borderTop: '1px solid #ccc',
-          paddingTop: '1rem',
-          paddingBottom: '1rem',
-          textAlign: 'center',
-          backgroundColor: '#f0f0f0',
-          height: '10px',
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-        }}
-      >
-        © 2023 SynAgro. Todos los derechos reservados.
-      </footer>
-
+   <Footer/>
     </div>
   );
 };
