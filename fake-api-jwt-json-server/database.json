@@ -1,22 +1,54 @@
 {
   "publicacion": [
     {
-      "id": 24,
-      "titulo": "cuenta post 1",
-      "resumen": "resumen 1",
-      "autor": "lm.wierna@gmail.com",
-      "fecha_publicacion": 1693454079794,
-      "user_id": 2,
-      "me_gusta": 1
+      "id": 25,
+      "titulo": "CustomDialog",
+      "resumen": "Circuitos de compras, ingresos, ventas, retenciones IVA, entre otras más.",
+      "autor": "admin@admin.com",
+      "fecha_publicacion": 1693484967671,
+      "user_id": 1,
+      "me_gusta": 0,
+      "comentarios": []
     },
     {
-      "id": 25,
-      "titulo": "nuevo post",
-      "resumen": "asd",
-      "autor": "asd",
-      "fecha_publicacion": 1693453982711,
+      "id": 26,
+      "titulo": "SynAgro",
+      "resumen": "Más que un software agropecuario, una forma inteligente de gestionar tu empresa",
+      "autor": "admin@admin.com",
+      "fecha_publicacion": 1693484932017,
       "user_id": 1,
-      "me_gusta": 2
+      "me_gusta": 0,
+      "comentarios": []
+    },
+    {
+      "titulo": "Finanzas",
+      "resumen": "Inflación, informe patrimonial, cash flow, facturas electrónica, y más.",
+      "autor": "SynAgro",
+      "fecha_publicacion": 1693485044372,
+      "user_id": 1,
+      "me_gusta": 0,
+      "comentarios": [],
+      "id": 27
+    },
+    {
+      "titulo": "Agricultura",
+      "resumen": "Administración de maquinarias, precios por tareas, cosecha, gestión de contratos, entre otras.",
+      "autor": "SynAgro",
+      "fecha_publicacion": 1693485068790,
+      "user_id": 1,
+      "me_gusta": 0,
+      "comentarios": [],
+      "id": 28
+    },
+    {
+      "titulo": "Ganadería",
+      "resumen": "Margen bruto por cabeza, circuitos de tambo, inventario ganadero, trazabilidad, y más.",
+      "autor": "SynAgro",
+      "fecha_publicacion": 1693485089424,
+      "user_id": 1,
+      "me_gusta": 0,
+      "comentarios": [],
+      "id": 29
     }
   ]
 }
