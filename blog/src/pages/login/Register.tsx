@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField, Grid, Box, Alert } from '@mui/material';
+import { Button, TextField, Grid, Alert } from '@mui/material';
 import { registerUser } from '../../api/api';
 import { styled } from '@mui/system';
 
@@ -20,7 +20,7 @@ const FormContainer = styled('div')({
 });
 
 const SameSizeButton = styled(Button)({
-  marginBottom: '0.5rem', // Ajusta el margen inferior según tus preferencias
+  marginBottom: '0.5rem', 
   width: '100%',
   height: 'auto',
 });

@@ -26,13 +26,13 @@ const Input = styled(TextField)({
 
 const SameSizeButton = styled(Button)({
   marginBottom: '1rem',
-  width: '100%', // Establecer el ancho al 100%
-  height: 'auto', // Establecer la altura en automático para que se ajuste al contenido
+  width: '100%', 
+  height: 'auto', 
 });
 
 
 const Login: React.FC = () => {
-  const { isAuthenticated, login, logout, user, updatePosts, posts } = useAppContext();
+  const {  login, } = useAppContext();
   const [emailform, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);

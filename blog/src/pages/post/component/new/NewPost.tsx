@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../../../context/AppContext';
 import { nuevoPost } from '../../../../api/api';
-import { Container, Typography, TextField, Button, Box } from '@mui/material';
+import { Container, Typography, TextField, Button } from '@mui/material';
 
 const NewPost: React.FC = () => {
-  const { isAuthenticated, user } = useAppContext();
+  const { user } = useAppContext();
   const navigate = useNavigate();
   const [titulo, setTitulo] = useState('');
   const [resumen, setResumen] = useState('');

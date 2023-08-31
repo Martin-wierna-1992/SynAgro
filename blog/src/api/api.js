@@ -97,7 +97,6 @@ export const nuevoPost = async (postInfo) => {
 };
 export const editarPost = async (postInfo,id,token) => {
   try {
-    console.log(token);
     const response = await fetch(`http://localhost:8000/publicacion/${id}`, {
       method: 'PUT',
       headers: {
