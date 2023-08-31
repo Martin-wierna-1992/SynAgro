@@ -49,6 +49,16 @@
       "me_gusta": 0,
       "comentarios": [],
       "id": 29
+    },
+    {
+      "id": 30,
+      "titulo": "Soluciones",
+      "resumen": "SYNAgro pone a tu alcance soluciones a los problemas más importantes de un productor/a agropecuario.",
+      "autor": "agrícola-ganadero",
+      "fecha_publicacion": 1693493441289,
+      "user_id": 1,
+      "me_gusta": 0,
+      "comentarios": []
     }
   ]
 }
