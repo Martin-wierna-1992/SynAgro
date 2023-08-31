@@ -8,6 +8,7 @@ import PostDetail from './pages/post/component/detail/PostDetail';
 import NewPost from './pages/post/component/new/NewPost';
 import EditPost from './pages/post/component/edit/EditPost';
 import Register from './pages/login/Register';
+import MyProfilePage from './pages/userProfile/MyProfilePage';
 const App: React.FC = () => {
   return (
     <AppContextProvider>
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/view/:id" element={(<PostDetail/>)} />
           <Route path="/new-post" element={(<NewPost/>)} />
           <Route path="/post-edit/:id" element={(<EditPost/>)} />
+          <Route path="/profile" element={(<MyProfilePage/>)} />
         </Routes>
       </Router>
     </AppContextProvider>

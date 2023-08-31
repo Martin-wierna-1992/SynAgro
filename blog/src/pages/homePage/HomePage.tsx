@@ -104,20 +104,23 @@ const HomePage: React.FC = () => {
 
                 }}
               >
+                
                 <CardContent>
-                  <Typography variant="h5" component="h2">
-                    {post.titulo}
-                  </Typography>
-                  <Typography variant="h6" component="h3">
-                   {post.autor}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Resumen: {post.resumen}
-                  </Typography>
+                  <span onClick={() => navigate(`/view/${post.id}`)} style={{cursor: 'pointer'}}>
+                    <Typography variant="h5" component="h2">
+                      {post.titulo}
+                    </Typography>
+                    <Typography variant="h6" component="h3">
+                    {post.autor}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Resumen: {post.resumen}
+                    </Typography>
+                  </span>
                   <div style={{ marginTop: '8px', display: 'flex', gap: '8px', alignItems: 'center' }}>
-                    <Button onClick={() => navigate(`/view/${post.id}`)} variant="outlined">
+                    {/* <Button onClick={() => navigate(`/view/${post.id}`)} variant="outlined">
                       Ver Detalles
-                    </Button>
+                    </Button> */}
                     {isAuthenticated && user?.id === post.user_id && (
                       <>
                         <Button onClick={() => navigate(`/post-edit/${post.id}`)} variant="outlined">

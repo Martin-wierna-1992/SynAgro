@@ -10,6 +10,7 @@ const EditPost: React.FC = () => {
   const { id } = useParams();
   const [titulo, setTitulo] = useState('');
   const [resumen, setResumen] = useState('');
+  const [autor, setAutor] = useState('');
   const [comentarios, setComentarios] = useState([]);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const EditPost: React.FC = () => {
           setTitulo(postData.titulo);
           setResumen(postData.resumen);
           setComentarios(postData.comentarios);
+          setAutor(postData.autor);
         }
       } catch (error) {
         console.error('Error al obtener los datos del post:', error);
@@ -38,7 +40,7 @@ const EditPost: React.FC = () => {
       id: id,
       titulo,
       resumen,
-      autor: user?.name || 'Autor Desconocido',
+      autor: autor || 'Autor Desconocido',
       fecha_publicacion: Date.now(),
       user_id: user?.id,
       me_gusta: 0,
