@@ -6,33 +6,17 @@
       "resumen": "resumen 1",
       "autor": "lm.wierna@gmail.com",
       "fecha_publicacion": 1693454079794,
-      "user_id": 1,
-      "me_gusta": 0,
-      "comentarios": [
-        {
-          "comentario": "asd",
-          "id": 3
-        }
-      ]
+      "user_id": 2,
+      "me_gusta": 1
     },
     {
+      "id": 25,
       "titulo": "nuevo post",
       "resumen": "asd",
       "autor": "asd",
       "fecha_publicacion": 1693453982711,
       "user_id": 1,
-      "me_gusta": 0,
-      "comentarios": [
-        {
-          "comentario": "gfg",
-          "id": 2
-        },
-        {
-          "comentario": "asdasdasd",
-          "id": 3
-        }
-      ],
-      "id": 25
+      "me_gusta": 2
     }
   ]
 }
