@@ -52,7 +52,7 @@ fs.readFile("./users.json", (err, data) => {
     var last_item_id = data.users[data.users.length-1].id;
 
     data.users.push({id: last_item_id + 1, email: email, password: password}); 
-    var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  /
+    var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  
         if (err) {
           const status = 401
           const message = err
